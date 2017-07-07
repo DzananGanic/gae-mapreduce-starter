@@ -1,0 +1,20 @@
+service: gae-mapreduce-starter
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+# We add handlers for the new tasks here
+- url: /starter_task
+  script: tasks.starter_task.app
+
+- url: /mapreduce(/.*)?
+  script: mapreduce.main.APP
+  login: admin
+
+- url: .*
+  script: main.app
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
